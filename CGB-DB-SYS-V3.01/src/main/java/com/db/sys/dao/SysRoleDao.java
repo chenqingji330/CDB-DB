@@ -15,6 +15,8 @@ public interface SysRoleDao {
 
 	int getRowCount(@Param("name") String name);
 
+	int doDeleteObject(@Param("id") Integer id);
+
 	
 	
 }

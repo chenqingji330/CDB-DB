@@ -9,6 +9,8 @@ public interface SysRoleService {
 
 	PageObject<SysRole>doFindPageObjects(Integer pageCurrent,String username);
 
+	void doDeleteObject(Integer id);
+
 	
 
 }

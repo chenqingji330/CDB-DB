@@ -28,11 +28,14 @@
   <select id="doFindPageObjects"  resultType="com.db.sys.pojo.SysRole">
    select * 
    <include refid="userWhere"/>
-   
    limit #{startIndex},#{pageSize}
-   
-  
-  
   </select>
+  
+  
+  <delete id="doDeleteObject">
+  delete from sys_roles where id=#{id}
+  
+  
+  </delete>
 
   </mapper>

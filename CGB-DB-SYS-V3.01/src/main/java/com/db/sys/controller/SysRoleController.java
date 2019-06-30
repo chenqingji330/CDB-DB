@@ -49,4 +49,39 @@ public SysResult doFindPageObjects(Integer pageCurrent,String username) {
 	
 }
 
+	//Request URL: http://localhost:8888/CGB-DB-SYS-V3.01/role/doDeleteObject.do
+	@RequestMapping("/doDeleteObject")
+	@ResponseBody
+	public SysResult  doDeleteObject(Integer id) {
+		
+		try {
+			
+			sysRoleServcie.doDeleteObject(id);
+			return new SysResult();
+					 
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new ServiceException("系统维护中!");
+			
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
+
+
+
+
+
+
+
+
