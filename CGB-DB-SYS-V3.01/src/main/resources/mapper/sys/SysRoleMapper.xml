@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.db.sys.dao.SysRoleDao">
+  
+  <!--  公共sql-->
+  
+  <sql id="userWhere"  > 
+  from sys_roles 
+<where>
+  <if test="name!=null  and name !=''"   >
+  username like concat("%",#{username},"%")
+  </if>
+
+
+</where>
+  
+    </sql>
+  
+  <!-- 1.0查询记录总数,按照用户名查询 -->
+  <select id="getRowCount"  resultType="int">
+  select count(*) 
+  <include refid="userWhere"/>
+  
+  
+  </select>
+  <!-- 2.0分页查询 -->
+  <select id="doFindPageObjects"  resultType="com.db.sys.pojo.SysRole">
+   select * 
+   <include refid="userWhere"/>
+   
+   limit #{startIndex},#{pageSize}
+   
+  
+  
+  </select>
+
+  </mapper>

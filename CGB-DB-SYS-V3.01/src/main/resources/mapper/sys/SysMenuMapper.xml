@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.db.sys.dao.SysMenuDao">
+  <!-- 1.0自关联查询 -->
+  <select id="doFindObjects"  resultType="map">
+  select c.* ,p.name parentName from sys_menus c left join sys_menus p on c.parentId=p.id order by sort
+  
+  
+  </select>
+  <!-- 2.0按照id删除菜单 -->
+  <delete id="doDeleteObject">
+  delete from sys_menus where id=#{id}
+  </delete>
+  
+  <!--3.0查找节点数据  -->
+  <select id="doFindZtreeMenuNodes"  resultType="com.db.sys.vo.ZtreeNode">
+   select id,name,parentId
+        from sys_menus 
+  
+  </select>
+  <insert id="doSaveObject" >
+  insert into sys_menus 
+  (name,url,type,sort,note,parentId,permission,createdTime,modifiedTime,createdUser,modifiedUser)
+  values (#{name},#{url},#{type},#{sort},#{note},#{parentId},#{permission},now(),now(),#{createdUser},#{modifiedUser})
+  
+  
+  </insert>
+  
+  <update id="doUpdateObject" >
+  update sys_menus
+   set
+   name=#{name},
+           type=#{type},
+           sort=#{sort},
+           url=#{url},
+           parentId=#{parentId},
+           permission=#{permission},
+           modifiedUser=#{modifiedUser},
+           modifiedTime=now()
+        where id=#{id}
+  
+  </update>
+  
+  
+  
+  
+  
+  </mapper>
