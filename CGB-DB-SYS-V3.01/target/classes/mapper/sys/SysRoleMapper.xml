@@ -9,7 +9,7 @@
   from sys_roles 
 <where>
   <if test="name!=null  and name !=''"   >
-  username like concat("%",#{username},"%")
+  name like concat("%",#{name},"%")
   </if>
 
 
@@ -34,5 +34,57 @@
   
   
   </select>
+  
+  <select id="getCount" resultType="int">
+  select  count(*) from sys_roles where name=#{name}
+  
+  </select>
+  
+  
+  <insert id="insertObject" parameterType="com.db.sys.pojo.SysRole">
+  
+  insert into sys_roles (id,name,note,createdTime,modifiedTime,createdUser,modifiedUser) values (null,#{name},#{note},#{createdTime},#{modifiedTime},#{createdUser},#{modifiedUser})
+  
+  </insert>
+  
+  <select id="findRoleIdByName" resultType="com.db.sys.pojo.SysRole">
+  select *from sys_roles where name=#{name}
+  
+  </select>
+  <delete id="doDeleteObject">
+  
+  delete from sys_roles where id=#{id}
+  
+  
+  </delete>
+  
+  
+  <select id="doFindObjectById"  resultType="com.db.sys.pojo.SysRole">
+  select * from sys_roles where id=#{id}
+   
+  </select>
+  
+  
+  <update id="doUpdateObject">
+  
+  update sys_roles set
+  name=#{name},note=#{note},modifiedTime=#{modifiedTime},modifiedUser=#{modifiedUser} where id=#{id}
+  
+  
+  </update>
+  <select id="doFindRoles"  resultType="com.db.sys.vo.CheckBox">
+  
+select id,name
+         from sys_roles 
+  
+  
+  </select>
+  
+  
+  
+  
+  
+  
+  
 
   </mapper>

@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class PageController {
-	
+	//Request URL: http://localhost:8888/CGB-DB-SYS-V3.01/doIndexUI.do
 	@RequestMapping("doIndexUI")
 	public String doIndexUI() {
 		
 		return  "starterAll";
-		//我是陈清吉!!	你是谁??大家好	
+		
 		
 	}
 	
@@ -22,5 +22,8 @@ public class PageController {
 		return "common/page";
 		
 	}
+	
+	
+
 
 }
