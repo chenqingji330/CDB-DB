@@ -12,4 +12,8 @@ public interface SysRoleUserDao {
 
 	List<Integer> findRoleIdsByUserId(Long id);
 
+	void deleteRoleUserById(Long id);
+
+	void doUpdateObject(Integer id, Integer[] roleIds);
+
 }

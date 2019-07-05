@@ -24,6 +24,15 @@
        http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
        http://www.springframework.org/schema/context
       http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-       <context:component-scan base-package="com.db.sys.service"/>
-      
+       <context:component-scan base-package="com.db.sys.service"/><!-- 扫描service类 -->
+       <context:component-scan base-package="com.db.sys.config"/> <!-- 扫描配置类 -->
+       <context:component-scan base-package="com.db.sys.aspect"/><!-- 扫描切面 -->
+     <!-- 启用注解方式的AOP(默认会注册bean对象，扫描所有@Aspect描述的对象) -->
+      <!--  <aop:aspectj-autoproxy/>
+       配置事务管理器对象
+       <bean id="txManager"   class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+       <property name="dataSource" ref="dataSource" />
+       </bean>
+       启用注解方式的事物配置(此元素会注册一个Bean对象，此bean对象会扫描所有事务切入点)
+       <tx:annotation-driven transaction-manager="txManager"/> -->
 </beans>

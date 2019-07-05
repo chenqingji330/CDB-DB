@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.db.sys.pojo.SysUser;
 import com.db.sys.service.SysUserService;
 import com.db.sys.util.SysResult;
 import com.db.sys.vo.PageObject;
@@ -82,7 +82,23 @@ public class UserController {
 				
 		
 	}
+	//Request URL: http://localhost:8888/CGB-DB-SYS-V3.01/user/doUpdateObject.do
+	//需要返回数据类型是:SysRsult 
 	
+//	username: admin123456
+//	email: admin@t.cn
+//	mobile: 13624356789   接收的数据
+//	deptId: 7
+//	roleIds: 1
+//	id: 1
+	
+	
+	@RequestMapping("/doUpdateObject")
+	@ResponseBody
+	public SysResult doUpdateObject(SysUser user,Integer...roleIds) {
+		sysUserService.doUpdateObject(user,roleIds);
+		return new SysResult("更新成功!");
+	}
 	
 	
 	
