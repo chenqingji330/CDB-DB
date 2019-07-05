@@ -35,6 +35,7 @@ public class SysDeptController {
 	@ResponseBody
 	public SysResult doFindObjects() {
 		List<Map<String,Object>> list=sysDeptServcie.doFindObjects();
+		System.out.println(list);
 		return new SysResult(list);
 		
 	}

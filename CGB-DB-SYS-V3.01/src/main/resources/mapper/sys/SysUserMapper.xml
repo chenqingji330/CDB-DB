@@ -16,13 +16,37 @@
   
   </select>
   
-  <select id="doFindPageObjects"  resultType="com.db.sys.pojo.SysUser">
-  select * <include refid="userWhere"/>
+
+  <insert id="doSaveObject" >
+ insert into sys_users
+		(username,password,deptId,email,mobile,salt,valid,
+		createdTime,modifiedTime,createdUser,modifiedUser)
+		values
+		(#{username},#{password},#{deptId},#{email},#{mobile},#{salt},#{valid},
+		#{createdTime},#{createdTime},#{createdUser},#{modifiedUser})
   
-  limit #{startIndex},#{pageSize}
+  </insert>
+  
+  <resultMap type="com.db.sys.vo.SysUserDeptVo" id="sysUserDeptVo">
+  <!-- 基于部门id查询部门信息，最后映射到 SysUserDeptVo对象的sysDept属性上 -->
+		<!-- one2one,many2one -->
+  <association property="sysDept"  column="deptId"  select="com.db.sys.dao.SysDeptDao.findObjectById"></association>
+  
+  </resultMap>
+  
+  <select id="doFindPageObjects" resultMap="sysUserDeptVo">
+    select * <include refid="userWhere"/>
+    limit #{startIndex},#{pageSize}
   
   
   </select>
+  <select id="doFindObjectById" resultMap="sysUserDeptVo">
+     select * from sys_users where id=#{deptId}
+  
+  
+  
+  </select>
+
   
  
   </mapper>

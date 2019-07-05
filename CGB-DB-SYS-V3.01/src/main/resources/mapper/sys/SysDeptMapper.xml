@@ -5,7 +5,10 @@
   
   <!-- 1.0查询部门信息 -->
   <select id="doFindObjects" resultType="map">
-  select c.*,p.name parentName from sys_depts c left join sys_depts p on c.parentId=p.id
+  select c.*,p.name parentName
+        from sys_depts c left join sys_depts p
+        on c.parentId=p.id
+       
   
   </select>
   
@@ -48,6 +51,13 @@
  
  
  </update>
-  
+ <!-- 自关联查询部门及上级关系表 -->
+<select id="findObjectById"  resultType="com.db.sys.pojo.SysDept">
+ select *
+         from sys_depts
+         where id=#{deptId}
+
+
+</select>
   
   </mapper>
