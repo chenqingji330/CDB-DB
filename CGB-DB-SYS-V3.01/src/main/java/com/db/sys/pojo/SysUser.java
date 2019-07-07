@@ -16,7 +16,7 @@ public class SysUser extends BasePojo {
 	private String salt;//盐值
 	private String email;
 	private String mobile;
-	private Long valid=1l;
+	private Long valid=1l;  // 禁用启用功能  默认是1启用
     private Long deptId;
 
 }

@@ -14,6 +14,8 @@ public interface SysRoleMenuDao {
 
 	List<Integer> doFindObjectById(Integer id);
 
+	List<Integer> findMenuIdsByRoleIds(Integer[] array);
+
 
 
 	

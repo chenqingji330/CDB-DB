@@ -3,6 +3,9 @@ package com.db.sys.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -101,6 +104,34 @@ public class UserController {
 	}
 	
 	
-	
+//	id: 1
+//	valid: 0  传递的值
+	//Request URL: http://localhost:8888/CGB-DB-SYS-V3.01/user/doValidById.do  禁用启用功能
+	@RequestMapping("/doValidById")
+	@ResponseBody
+	public SysResult doValidById(Long id,Long valid) {
+		
+		sysUserService.doValidById(id,valid);
+		
+		return  new SysResult("更新成功!");
+	}
+
+	 @RequestMapping("/doLogin")
+	   @ResponseBody
+	   public SysResult doLogin(String username,
+			   String password,boolean rememberMe) {
+		   //提交用户信息到业务层
+		   //1.获取主题对象(Subject)
+		   Subject subject=SecurityUtils.getSubject();
+		   //2.提交信息(提交给shiro的securityManager)
+		   UsernamePasswordToken token=
+		   new UsernamePasswordToken(username, password);
+		   System.out.println("rememberMe="+rememberMe);
+		   if(rememberMe) {
+			  token.setRememberMe(true);
+		   } 
+		   subject.login(token);//执行登录认证
+		   return new SysResult("login ok");
+	   }
 
 }

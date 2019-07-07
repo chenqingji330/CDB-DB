@@ -17,4 +17,6 @@ public interface SysUserService {
 
 	void doUpdateObject(SysUser user, Integer[] roleIds);
 
+	void doValidById(Long id, Long valid);
+
 }

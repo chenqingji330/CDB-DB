@@ -94,4 +94,26 @@ public void doUpdateObject(SysUser user, Integer[] roleIds) {
 	//3.2再添加新的关系数据  按照用户id和角色id更新关系表
 	sysRoleUserDao.doSaveObject(id, roleIds);
 }
+
+@Override
+public void doValidById(Long id, Long valid) {
+	//按照用户id更新valid值,默认是1,启用
+	sysUserDao.doValidById(id,valid);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

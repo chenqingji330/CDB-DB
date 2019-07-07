@@ -18,4 +18,6 @@ public interface SysLogDao {
 			@Param("startIndex")int startIndex, 
 			@Param("pageSize")int pageSize);
 
+	void insertObject(SysLog log);
+
 }

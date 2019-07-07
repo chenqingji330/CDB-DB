@@ -11,37 +11,40 @@
     xmlns:jpa="http://www.springframework.org/schema/data/jpa"
     xsi:schemaLocation="  
        http://www.springframework.org/schema/beans   
-       http://www.springframework.org/schema/beans/spring-beans-4.3.xsd  
+       http://www.springframework.org/schema/beans/spring-beans.xsd  
        http://www.springframework.org/schema/mvc   
-       http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd   
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd   
        http://www.springframework.org/schema/tx   
-       http://www.springframework.org/schema/tx/spring-tx-4.3.xsd   
+       http://www.springframework.org/schema/tx/spring-tx.xsd   
        http://www.springframework.org/schema/aop 
-       http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+       http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/util 
-       http://www.springframework.org/schema/util/spring-util-4.3.xsd
+       http://www.springframework.org/schema/util/spring-util.xsd
        http://www.springframework.org/schema/data/jpa 
-       http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
+       http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
        http://www.springframework.org/schema/context
-      http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-       <context:component-scan base-package="com.db.sys.controller"/>
-         <!--启用mvc默认配置(内置一部分bean对象的定义)-->
-       <mvc:annotation-driven/>
-       <!--配置视图解析器  -->
-       <bean id="viewResovler"   class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-       <property name="Prefix" value="/WEB-INF/pages/"></property> <!--配置前缀  -->
-       <property name="Suffix"  value=".html"></property>  <!-- 配置后缀 -->
-       
-       
-       </bean>
-     <!--      配置spring mvc拦截器
-          <mvc:interceptors>
-          <mvc:interceptor>
-          定义要拦截的请求
-          <mvc:mapping path="/user/doLogin.do"/>      
-          </mvc:interceptor>  
-          </mvc:interceptors>
-        -->
-       
+       http://www.springframework.org/schema/context/spring-context.xsd">
+        <context:component-scan 
+      base-package="com.db.sys.controller,com.db.common.web,com.db.sys.util"/>
+      <!--启用mvc默认配置(内置一部分bean对象的定义)-->
+      <mvc:annotation-driven/><!-- 406 -->
+      <!--注册视图解析对象 -->
+      <bean id="viewResovler" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+             <property name="Prefix" value="/WEB-INF/pages/"/>
+             <property name="Suffix" value=".html"/>
+          
+      </bean>
+      <!-- 配置spring mvc拦截器 -->
+      
+      <mvc:interceptors>
+         <mvc:interceptor>
+            <!-- 定义要拦截的请求 -->
+            <mvc:mapping path="/user/doLogin.do"/>
+            <!-- 使用如下bean进行拦截处理 -->
+        <ref bean="timeAccessInterceptor"/> 
+        
+         </mvc:interceptor>
+         <!-- 多个拦截器时，哪个优先执行要看配置顺序 -->
+      </mvc:interceptors>
       
 </beans>

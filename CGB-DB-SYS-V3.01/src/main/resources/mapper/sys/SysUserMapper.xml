@@ -74,6 +74,38 @@
   
   </update>
 
+  <update id="doValidById">
+  	update sys_users
+		set valid=#{valid},
+		modifiedTime=now()
+		where id=#{id}
   
+  
+  </update>
+  <select id="doFindObjectByName"  resultType="com.db.sys.pojo.SysUser">
+  select * from sys_users where username=#{username}
+  
+  
+  </select>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
   </mapper>

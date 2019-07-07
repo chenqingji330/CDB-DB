@@ -17,5 +17,8 @@ public interface SysMenuDao {
 	int doSaveObject(SysMenu menu);
 
 	int doUpdateObject(SysMenu menu);
+
+	List<String> findPermissions(Integer[] array);
+
 	
 }

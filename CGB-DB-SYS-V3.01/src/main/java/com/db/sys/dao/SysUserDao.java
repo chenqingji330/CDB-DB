@@ -25,4 +25,9 @@ public interface SysUserDao {
 
 	void doUpdateObject(SysUser user);
 
+	void doValidById(	@Param("id")Long id,
+			@Param("valid")Long valid);
+
+	SysUser doFindObjectByName(@Param("username") String username);
+
 }
